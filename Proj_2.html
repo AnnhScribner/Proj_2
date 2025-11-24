@@ -7515,7 +7515,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [106]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Class to define entries in the HashTable</span>
@@ -7555,7 +7555,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [107]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Hash Table implementation</span>
@@ -7666,7 +7666,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [108]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LinearProbingWithCount</span><span class="p">(</span><span class="n">HashTableWithCount</span><span class="p">):</span>
@@ -7802,7 +7802,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [109]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Inherits HashTableWithCount using double hashing</span>
@@ -7934,10 +7934,11 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [110]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">GetStatistics</span><span class="p">:</span>
 
@@ -7962,6 +7963,16 @@ a.anchor-link {
         <span class="n">linear_ht3</span> <span class="o">=</span> <span class="n">LinearProbingWithCount</span><span class="p">()</span>
         <span class="n">double_ht3</span> <span class="o">=</span> <span class="n">DoubleHashingWithCount</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">insert_all_names</span><span class="p">(</span><span class="n">linear_ht3</span><span class="p">,</span> <span class="n">double_ht3</span><span class="p">,</span> <span class="n">names_10000</span><span class="p">)</span>
+        
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># Compute statistics</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">probes_list</span><span class="p">):</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">probes_list</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">probes_list</span><span class="p">)</span>
+        <span class="n">standard_deviation</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">probes_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">standard_deviation</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">probes_list</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">average</span><span class="p">,</span> <span class="n">standard_deviation</span>
 
     <span class="c1"># ----------------------------</span>
     <span class="c1"># Load Names</span>
@@ -7976,46 +7987,111 @@ a.anchor-link {
             <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">names</span><span class="p">[:</span><span class="mi">10000</span><span class="p">]</span>   <span class="c1"># ensure exactly 10,000 names</span>
 
-    <span class="c1"># ----------------------------</span>
-    <span class="c1"># Experiment 1</span>
-    <span class="c1"># ----------------------------</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">choose_100_names_and_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linear_ht</span><span class="p">,</span> <span class="n">double_ht</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
         <span class="n">selected</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">linear_probes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">double_probes</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="c1"># Insert into both tables</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
+            <span class="n">linear_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            <span class="n">double_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            
             <span class="n">linear_ht</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">double_ht</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            
+            <span class="n">linear_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+            <span class="n">double_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+            
+        <span class="c1"># Total probe count</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">double_probes</span><span class="p">))</span>
+        
+        <span class="c1"># Statistics</span>
+        <span class="n">average_linear</span><span class="p">,</span> <span class="n">standard_deviation_linear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">)</span>
+        <span class="n">average_double</span><span class="p">,</span> <span class="n">standard_deviation_double</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">double_probes</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing probe count:"</span><span class="p">,</span> <span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing probe count:"</span><span class="p">,</span> <span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
-
+        
     <span class="c1"># ----------------------------</span>
     <span class="c1"># Insert all names</span>
     <span class="c1"># ----------------------------</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">insert_all_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linear_ht</span><span class="p">,</span> <span class="n">double_ht</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+        <span class="n">linear_probes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">double_probes</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Insert into both tables</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="n">linear_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            <span class="n">double_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            
             <span class="n">linear_ht</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">double_ht</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            
+            <span class="n">linear_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+            <span class="n">double_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing probes:"</span><span class="p">,</span> <span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing probes:"</span><span class="p">,</span> <span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+        <span class="c1">#Total probe count</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">double_probes</span><span class="p">))</span>
+        
+        <span class="c1"># Statistics</span>
+        <span class="n">average_linear</span><span class="p">,</span> <span class="n">standard_deviation_linear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">)</span>
+        <span class="n">average_double</span><span class="p">,</span> <span class="n">standard_deviation_double</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">double_probes</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear size:"</span><span class="p">,</span> <span class="n">linear_ht</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double size:"</span><span class="p">,</span> <span class="n">double_ht</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
-
-    <span class="c1"># ----------------------------</span>
-    <span class="c1"># Experiment 4: Searching</span>
-    <span class="c1"># ----------------------------</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">search_for_100_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linear_ht</span><span class="p">,</span> <span class="n">double_ht</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
         <span class="n">selected</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">linear_probes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">double_probes</span> <span class="o">=</span> <span class="p">[]</span>
 
+        <span class="c1"># Insert into both tables</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
+            <span class="n">linear_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            <span class="n">double_ht</span><span class="o">.</span><span class="n">reset_probe_count</span><span class="p">()</span>
+            
             <span class="n">linear_ht</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="n">double_ht</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            
+            <span class="n">linear_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+            <span class="n">double_probes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing search probes:"</span><span class="p">,</span> <span class="n">linear_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing search probes:"</span><span class="p">,</span> <span class="n">double_ht</span><span class="o">.</span><span class="n">get_probes</span><span class="p">())</span>
+        <span class="c1">#Total probe count</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing probes:"</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">double_probes</span><span class="p">))</span>
+        
+        <span class="c1"># Statistics</span>
+        <span class="n">average_linear</span><span class="p">,</span> <span class="n">standard_deviation_linear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">linear_probes</span><span class="p">)</span>
+        <span class="n">average_double</span><span class="p">,</span> <span class="n">standard_deviation_double</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">double_probes</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Linear Probing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_linear</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Hashing Statistics:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Average probes: </span><span class="si">{</span><span class="n">average_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Std deviation: </span><span class="si">{</span><span class="n">standard_deviation_double</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="c1"># Run program</span>
@@ -8035,22 +8111,64 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 === Experiment 1: Insert 100 random names ===
-Linear Probing probe count: 5
-Double Hashing probe count: 5
+Linear Probing probes: 9
+Double Hashing probes: 10
+
+Linear Probing Statistics:
+  Average probes: 0.09
+  Std deviation: 0.32
+
+Double Hashing Statistics:
+  Average probes: 0.10
+  Std deviation: 0.36
 
 === Experiment 2: Insert all 1000 names ===
-Linear Probing probes: 1083
-Double Hashing probes: 752
-Linear size: 1000
-Double size: 1000
+Linear Probing probes: 1165
+Double Hashing probes: 735
+
+Linear Probing Statistics:
+  Average probes: 1.17
+  Std deviation: 2.59
+
+Double Hashing Statistics:
+  Average probes: 0.73
+  Std deviation: 1.27
 
 === Experiment 3: Insert all 10,000 names ===
-Linear Probing probes: 17926
-Double Hashing probes: 10802
-Linear size: 10000
-Double size: 10000
+Linear Probing probes: 17180
+Double Hashing probes: 10864
+
+Linear Probing Statistics:
+  Average probes: 1.72
+  Std deviation: 3.34
+
+Double Hashing Statistics:
+  Average probes: 1.09
+  Std deviation: 1.67
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f923487b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Comment-Analysis">Comment Analysis<a class="anchor-link" href="#Comment-Analysis">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f47faa4b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="In-my-results,-double-hashing-had-fewer-collisions-than-linear-probing.-Linear-probing-always-checks-the-next-spot-in-the-table,-so-when-things-start-getting-full,-it-creates-big-clusters-of-filled-spaces.-That-makes-collisions-happen-more-often.-Double-hashing-is-better-at-avoiding-that-because-it-%E2%80%9Cjumps%E2%80%9D-through-the-table-using-a-second-hash,-so-it-spreads-things-out-more.-Because-of-that,-it-needs-fewer-probes-and-stays-faster-even-when-the-table-gets-more-full.-Linear-probing-is-super-simple-and-works-well-when-the-table-isn%E2%80%99t-very-full,-but-it-becomes-slow-later.-Double-hashing-is-a-little-more-complex,-but-it-handles-collisions-in-a-much-better-and-more-organized-way.">In my results, double hashing had fewer collisions than linear probing. Linear probing always checks the next spot in the table, so when things start getting full, it creates big clusters of filled spaces. That makes collisions happen more often. Double hashing is better at avoiding that because it “jumps” through the table using a second hash, so it spreads things out more. Because of that, it needs fewer probes and stays faster even when the table gets more full. Linear probing is super simple and works well when the table isn’t very full, but it becomes slow later. Double hashing is a little more complex, but it handles collisions in a much better and more organized way.<a class="anchor-link" href="#In-my-results,-double-hashing-had-fewer-collisions-than-linear-probing.-Linear-probing-always-checks-the-next-spot-in-the-table,-so-when-things-start-getting-full,-it-creates-big-clusters-of-filled-spaces.-That-makes-collisions-happen-more-often.-Double-hashing-is-better-at-avoiding-that-because-it-%E2%80%9Cjumps%E2%80%9D-through-the-table-using-a-second-hash,-so-it-spreads-things-out-more.-Because-of-that,-it-needs-fewer-probes-and-stays-faster-even-when-the-table-gets-more-full.-Linear-probing-is-super-simple-and-works-well-when-the-table-isn%E2%80%99t-very-full,-but-it-becomes-slow-later.-Double-hashing-is-a-little-more-complex,-but-it-handles-collisions-in-a-much-better-and-more-organized-way.">¶</a></h4>
 </div>
 </div>
 </div>
