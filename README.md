@@ -1,8 +1,8 @@
 # Linear Probing vs. Double Hashing Experiment
-*Author:* Anna Scribner
-*Date:* October 2025
+**Author:** Anna Scribner
+**Date:** October 2025
 ---------------
-*About:*
+**About:**
 
 This project compares linear probing and double hashing as collision resolution strategies in a hash table.
 
