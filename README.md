@@ -1,6 +1,6 @@
 # Linear Probing vs. Double Hashing Experiment
 
-**Author:** Anna Scribner
+**Author:** Anna Scribner<br>
 **Date:** November 25, 2025
 ---------------
 **About:**
